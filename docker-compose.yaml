@@ -23,7 +23,7 @@ services:
 
   web:
     build: .
-    container_name: ads-platform
+    container_name: ads-platform-web
 
     depends_on:
       db:
