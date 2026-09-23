@@ -25,6 +25,10 @@ locals {
         {
           name  = "APP_PORT"
           value = "8000"
+        },
+        {
+          name  = "DATABASE_URL"
+          value = "postgresql://ads_user:${var.db_password}@${aws_db_instance.postgres.address}:5432/ads_platform"
         }
       ]
     }
@@ -46,8 +50,4 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
 
   container_definitions = jsonencode(local.containers)
-}
-
-output "container_debug" {
-  value = local.containers
 }
